@@ -2,9 +2,16 @@
 <html lang="en" xml:th="http:\\www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
-    <title th:text="${title}"></title>
+    <title th:text="${title}">Default Title</title>
 </head>
 <body>
-<h1 th:text="${title}"></h1>
+<h1 th:text="${title}">Default</h1>
+
+<!-- check if cheeses is passed and is not empty-->
+<p th:unless="${cheeses} and ${cheeses.size()}">No Chesses :( </p>
+
+<ul>
+    <li th:each="cheese : ${cheeses}" th:text="${cheese}"></li>
+</ul>
 </body>
 </html>
