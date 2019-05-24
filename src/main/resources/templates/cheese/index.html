@@ -5,8 +5,13 @@
     <title th:text="${title}">Default Title</title>
 </head>
 <body>
+
+<nav th:fragment="navigation">
+    <a href="/cheese">List</a>
+    <a href="/cheese/add">Add</a>
+</nav>
+
 <h1 th:text="${title}">Default</h1>
-<a href = "/cheese/add" >Add Cheese</a>
 
 
 <!-- check if cheeses is passed and is not empty-->
