@@ -17,8 +17,26 @@
 <!-- check if cheeses is passed and is not empty-->
 <p th:unless="${cheeses} and ${cheeses.size()}">No Cheeses :( </p>
 
-<ul>
-    <li th:each="cheese : ${cheeses}" th:text="${cheese}"></li>
-</ul>
+
+<div th:if="${cheeses} and ${cheeses.size()}">
+    <form method="post">
+        <input name="deleteCheeses" type="submit" value="Delete Cheeses"/>
+        <br/><br/>
+        <table border="1">
+            <tr>
+                <td>Cheese name</td>
+                <td>Description</td>
+                <td>Check to delete</td>
+            </tr>
+            <tr th:each="cheese: ${cheeses}">
+                <td th:text="${cheese.key}"></td>
+                <td th:text="${cheese.value}"></td>
+                <td><input name="delCheese" th:value="${cheese.key}" type="checkbox"/><a href="/cheese/del">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 </body>
 </html>
