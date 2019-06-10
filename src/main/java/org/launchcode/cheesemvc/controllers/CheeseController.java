@@ -24,12 +24,14 @@ public class CheeseController {
         return "cheese/index";
     }
 
+    // displays add form on GET request and renders add.html
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCheeseForm(Model model){
         model.addAttribute("title", "Add Cheese");
         return "cheese/add";
     }
 
+    // when add button is clicked this POST method is called and redirected to the same page
     @RequestMapping(value = "add", method=RequestMethod.POST)
     public String processAddCheeseForm(@RequestParam String cheeseName, @RequestParam String cheeseDescription) {
         cheeses.put(cheeseName, cheeseDescription);
@@ -37,18 +39,17 @@ public class CheeseController {
         return "redirect:";
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public String deleteCheeseForm(@RequestParam ArrayList<String> delCheese) {
+    @RequestMapping(value = "delete", method = RequestMethod.GET)
+    public String displayDeleteCheeseForm(Model model) {
+        model.addAttribute("cheeses", cheeses.keySet());
+        model.addAttribute("title", "Delete Cheese");
+        return "cheese/delete";
+    }
+
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    public String processDeleteCheeseForm(@RequestParam ArrayList<String> delCheese) {
         for (String del : delCheese)
             cheeses.remove(del);
         return "redirect:";
     }
-
-    @RequestMapping(value = "/del", method = RequestMethod.GET)
-    public String deleteCheeseFormSingle(@RequestParam String delCheese) {
-        cheeses.remove(delCheese);
-        return "redirect:";
-    }
-
-    //public String deleteCheeseFormSingle(@Requ)
 }

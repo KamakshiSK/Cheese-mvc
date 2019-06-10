@@ -1,22 +1,22 @@
+
 <!DOCTYPE html>
-<html lang="en" xml:th="http:\\www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:repalce ="fragments::head">
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container body-content">
+<h1 th:text="${title}">Default Title</h1>
 
-<nav th:fragment="navigation">
-    <a href="/cheese">List</a>
-    <a href="/cheese/add">Add</a>
-</nav>
+<nav th:replace="fragments :: navigation"></nav>
 
-<h1 th:text="${title}">Default</h1>
-
-
-
-<form method = "post">
-    Name: <input name="cheeseName" type="text"/>
-    Description: <input name="cheeseDescription" type="text"/>
-<input type="Submit" name = "Add" />
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label for="name-field">Name</label>
+        <input class="form-control" id="name-field" name="cheeseName" type="text"/>
+    </div>
+    <div class="form-group">
+        <label for="desc-field">Description</label>
+        <input class="form-control" id="desc-field" name="cheeseDescription" type="text"/>
+    </div>
+    <input type="submit" value="Add Cheese"/>
 </form>
 
 </body>

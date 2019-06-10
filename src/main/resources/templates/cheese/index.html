@@ -1,42 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xml:th="http:\\www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8" />
-    <title th:text="${title}">Default Title</title>
-</head>
-<body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
 
-<nav th:fragment="navigation">
-    <a href="/cheese">List</a>
-    <a href="/cheese/add">Add</a>
-</nav>
+<body class="container body-content">
 
-<h1 th:text="${title}">Default</h1>
+<h1 th:text="${title}">Default Title</h1>
 
+<nav th:replace="fragments :: navigation"></nav>
 
-<!-- check if cheeses is passed and is not empty-->
-<p th:unless="${cheeses} and ${cheeses.size()}">No Cheeses :( </p>
-
+<p th:unless="${cheeses} and ${cheeses.size()}">no cheese :(</p>
 
 <div th:if="${cheeses} and ${cheeses.size()}">
-    <form method="post">
-        <input name="deleteCheeses" type="submit" value="Delete Cheeses"/>
-        <br/><br/>
-        <table border="1">
-            <tr>
-                <td>Cheese name</td>
-                <td>Description</td>
-                <td>Check to delete</td>
-            </tr>
-            <tr th:each="cheese: ${cheeses}">
-                <td th:text="${cheese.key}"></td>
-                <td th:text="${cheese.value}"></td>
-                <td><input name="delCheese" th:value="${cheese.key}" type="checkbox"/><a href="/cheese/del">Delete</a>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
 
+    <table class="table">
+
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+
+        <tr th:each="cheese : ${cheeses}">
+            <td th:text="${cheese.key}"></td>
+            <td th:text="${cheese.value}"></td>
+        </tr>
+
+    </table>
+</div>
 </body>
 </html>

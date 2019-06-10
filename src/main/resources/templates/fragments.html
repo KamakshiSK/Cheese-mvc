@@ -1,11 +1,22 @@
+
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:fragment="head">
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
-    <title th:text="${title}">My Cheese</title>
+    <title th:text="${title}">My Cheeses</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+
 </head>
 <body>
+
+<nav th:fragment="navigation">
+    <a href="/cheese">List</a> |
+    <a href="/cheese/add">Add</a> |
+    <a href="/cheese/delete">Delete</a>
+    <br/><br/>
+</nav>
 
 </body>
 </html>
