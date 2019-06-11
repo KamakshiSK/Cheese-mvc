@@ -10,6 +10,8 @@
 
 <p th:unless="${cheeses} and ${cheeses.size()}"> Please Add Cheese first. </p>
 
+<p th:text="${errorMsg}"></p>
+
 <form method="post" th:if="${cheeses} and ${cheeses.size()}">
 
     <div class="checkbox">
@@ -31,6 +33,7 @@
             <br/>
         </table>
     </div>
+
     <!--<input th:if="${delCheese.size()}" type="submit" value="Delete Cheese"/>-->
     <input type="submit" value="Delete Cheese"/>
 </form>

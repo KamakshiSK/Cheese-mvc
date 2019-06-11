@@ -19,7 +19,7 @@ public class CheeseController {
         return "cheese/index";
     }
 
-    // displays add form on GET request and renders add.html
+    // displays add form on GET request and renders add view
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddCheeseForm(Model model){
         model.addAttribute("title", "Add Cheese");
