@@ -12,12 +12,26 @@
 
 <form method="post" th:if="${cheeses} and ${cheeses.size()}">
 
-    <div class="checkbox" th:each="cheese : ${cheeses}">
-        <input name="delCheese" th:id="${cheese}" th:value="${cheese}" type="checkbox"/>
-        <label th:for="${cheese}" th:text="${cheese}"></label>
-        <br/>
-    </div>
+    <div class="checkbox">
+        <table class="table">
 
+            <tr>
+                <th>Check</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+
+            <tr th:each="cheese : ${cheeses}">
+                <td><input name="delCheese" th:id="${cheese.cheeseID}" th:value="${cheese.cheeseID}" type="checkbox"/>
+                </td>
+                <td th="${cheese.name}" th:text="${cheese.name}"></td>
+                <td th="${cheese.description}" th:text="${cheese.description}"></td>
+            </tr>
+
+            <br/>
+        </table>
+    </div>
+    <!--<input th:if="${delCheese.size()}" type="submit" value="Delete Cheese"/>-->
     <input type="submit" value="Delete Cheese"/>
 </form>
 
