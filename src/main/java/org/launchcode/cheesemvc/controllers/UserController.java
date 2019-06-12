@@ -49,7 +49,7 @@ public class UserController {
         }
 
         // check if username contains only letters
-        /*if (!user.getName().contains("[a-zA-Z]+")){
+        /*if (!user.getName().contains("^[a-zA-Z]*$")){
             user.setEmail(user.getEmail());
             user.setName(user.getName());
             return "user/add";
