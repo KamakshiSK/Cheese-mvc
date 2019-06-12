@@ -13,6 +13,7 @@ public class Cheese {
     private String description;
     private static int nextCheeseID = 1;
     private int cheeseID;
+    private CheeseType type;
 
     public Cheese(String name, String description) {
         this();
@@ -47,5 +48,13 @@ public class Cheese {
 
     public void setCheeseID(int cheeseID) {
         this.cheeseID = cheeseID;
+    }
+
+    public CheeseType getType() {
+        return type;
+    }
+
+    public void setType(CheeseType type) {
+        this.type = type;
     }
 }
