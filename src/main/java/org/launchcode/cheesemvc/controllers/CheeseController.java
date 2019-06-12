@@ -78,9 +78,13 @@ public class CheeseController {
         }
 
         Cheese c = CheeseData.getById(newCheese.getCheeseID());
-        c.setName(newCheese.getName());
+        CheeseData.remove(c.getCheeseID());
+        CheeseData.add(newCheese);
+        //model.addAttribute("cheese", newCheese);
+        /*c.setName(newCheese.getName());
         c.setDescription(newCheese.getDescription());
         c.setType(newCheese.getType());
+        c.setRatings(newCheese.getRatings())*/
         return "redirect:";
     }
 

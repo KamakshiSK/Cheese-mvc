@@ -1,5 +1,7 @@
 package org.launchcode.cheesemvc.models;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -14,6 +16,9 @@ public class Cheese {
     private static int nextCheeseID = 1;
     private int cheeseID;
     private CheeseType type;
+    @Min(1)
+    @Max(5)
+    private int ratings;
 
     public Cheese(String name, String description) {
         this();
@@ -56,5 +61,13 @@ public class Cheese {
 
     public void setType(CheeseType type) {
         this.type = type;
+    }
+
+    public int getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(int ratings) {
+        this.ratings = ratings;
     }
 }
