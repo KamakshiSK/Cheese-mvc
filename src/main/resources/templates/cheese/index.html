@@ -12,17 +12,20 @@
 
 <div th:if="${cheeses} and ${cheeses.size()}">
 
-    <table class="table">
-
+    <table class="table table-striped table-bordered">
+        <caption>List of Chesses</caption>
+        <thead class="thead-dark">
         <tr>
+            <th>#</th>
             <th>Name</th>
             <th>Description</th>
             <th>Type</th>
             <th>Ratings</th>
             <th>Edit</th>
         </tr>
-
-        <tr th:each="cheese : ${cheeses}">
+        </thead>
+        <tr th:each="cheese, iterStat : ${cheeses}">
+            <td th:text="${iterStat.count}"></td>
             <td th:text="${cheese.name}"></td>
             <td th:text="${cheese.description}"></td>
             <td th:text="${cheese.type.name}"></td>

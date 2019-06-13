@@ -7,27 +7,30 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-
 <p th:unless="${cheeses} and ${cheeses.size()}"> Please Add Cheese first. </p>
 
-<p th:text="${errorMsg}"></p>
-
 <form method="post" th:if="${cheeses} and ${cheeses.size()}">
-
-    <div class="checkbox">
-        <table class="table">
-
+    <div>
+        <table class="table table-striped table-bordered table-hover">
+            <caption>Mark Chesses for deletion</caption>
+            <thead class="thead-dark">
             <tr>
-                <th>Check</th>
+                <th>#</th>
+                <th>Delete</th>
                 <th>Name</th>
                 <th>Description</th>
+                <th>Type</th>
+                <th>Ratings</th>
             </tr>
-
-            <tr th:each="cheese : ${cheeses}">
+            </thead>
+            <tr th:each="cheese, iterStat : ${cheeses}">
+                <td th:text="'  ' + ${iterStat.count}"></td>
                 <td><input name="delCheese" th:id="${cheese.cheeseID}" th:value="${cheese.cheeseID}" type="checkbox"/>
                 </td>
-                <td th="${cheese.name}" th:text="${cheese.name}"></td>
-                <td th="${cheese.description}" th:text="${cheese.description}"></td>
+                <td th:text="${cheese.name}"></td>
+                <td th:text="${cheese.description}"></td>
+                <td th:text="${cheese.type.name}"></td>
+                <td th:text="${cheese.ratings}"></td>
             </tr>
 
             <br/>
