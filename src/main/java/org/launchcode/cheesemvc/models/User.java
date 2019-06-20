@@ -1,12 +1,24 @@
 package org.launchcode.cheesemvc.models;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 public class User {
     private static int nextUserId = 1;
     private int userId;
+    @NotNull
+    @NotEmpty(message = "Please provide user name.")
     private String name;
+    @NotNull
+    @NotEmpty(message = "Please provide password.")
+    @Size(min = 5, max = 15)
     private String password;
+
+    @Email(message = "Please provide valid e-mail.")
     private String email;
     private LocalDateTime dateJoined;
 

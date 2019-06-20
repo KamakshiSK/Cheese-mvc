@@ -7,22 +7,28 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" style="max-width:600px;">
+<form method="post" style="max-width:600px;" th:object:="${user}">
     <div class="form-group">
-        <label for="name-field">Name</label>
-        <input class="form-control" id="name-field" name="name" th:value="${user.name}" type="text"/>
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{user.name}"/>
+        <span class="error" th:errors="*{user.name}"></span>
     </div>
     <div class="form-group">
-        <label for="password-field">Password</label>
-        <input class="form-control" id="password-field" name="password" type="password"/>
+        <label th:for="password">Password</label>
+        <input class="form-control" th:field="*{user.password}" type="password"/>
+        <span class="error" th:errors="*{user.password}"></span>
+
     </div>
     <div class="form-group">
         <label for="verifyPassword-field">Verify Password</label>
         <input class="form-control" id="verifyPassword-field" name="verify" type="password"/>
+
     </div>
     <div class="form-group">
-        <label for="email-field">Email</label>
-        <input class="form-control" id="email-field" name="email" th:value="${user.email}" type="email"/>
+        <label th:for="email">Email</label>
+        <input class="form-control" th:field="*{user.email}" type="email"/>
+        <span class="error" th:errors="*{user.email}"></span>
+
     </div>
 
     <input type="submit" value="Add User"/>

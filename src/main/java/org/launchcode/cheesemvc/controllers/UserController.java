@@ -4,11 +4,13 @@ import org.launchcode.cheesemvc.models.User;
 import org.launchcode.cheesemvc.models.UserData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Controller
@@ -17,16 +19,21 @@ public class UserController {
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String addUserForm(Model model) {
-        User user = new User("", "", "");
-        model.addAttribute("user", user);
+        //User user = new User("", "", "");
+        model.addAttribute("title", "Add new User");
+        model.addAttribute(new User());
         return "user/add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(Model model, @ModelAttribute User user, String verify) {
+    public String add(Model model, @Valid @ModelAttribute User user, Errors errors, String verify) {
 
         // check fields not empty
-        if (user.getName().isEmpty()) {
+        if (errors.hasErrors()) {
+            return "user/add";
+        }
+
+        /*if (user.getName().isEmpty()) {
             user.setEmail(user.getEmail());
             return "user/add";
         }
@@ -49,12 +56,12 @@ public class UserController {
         }
 
         // check if username contains only letters
-        /*if (!user.getName().contains("^[a-zA-Z]*$")){
+        *//*if (!user.getName().contains("^[a-zA-Z]*$")){
             user.setEmail(user.getEmail());
             user.setName(user.getName());
             return "user/add";
-        }*/
-
+        }*//*
+         */
         if (!user.getPassword().equals(verify)) {
             user.setEmail(user.getEmail());
             user.setName(user.getName());
