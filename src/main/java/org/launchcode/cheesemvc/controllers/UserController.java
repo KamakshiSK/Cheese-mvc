@@ -1,7 +1,8 @@
 package org.launchcode.cheesemvc.controllers;
 
 import org.launchcode.cheesemvc.models.User;
-import org.launchcode.cheesemvc.models.UserData;
+import org.launchcode.cheesemvc.models.data.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,6 +17,9 @@ import java.time.LocalDateTime;
 @Controller
 @RequestMapping("user")
 public class UserController {
+
+    @Autowired
+    private UserDao userDao;
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String addUserForm(Model model) {
@@ -69,16 +73,16 @@ public class UserController {
         }
 
         user.setDateJoined(LocalDateTime.now());
-        UserData.add(user);
+        userDao.save(user);
 
-        model.addAttribute("users", UserData.getAll());
+        model.addAttribute("users", userDao.findAll());
         model.addAttribute("title", "Welcome Users.");
         return "user/index";
     }
 
     @RequestMapping(value = "userList/{userId}")
     public String displayUsers(Model model, @PathVariable int userId) {
-        User user = UserData.getById(userId);
+        User user = userDao.findOne(userId);
 
         model.addAttribute("user", user);
         model.addAttribute("title", "User Information");

@@ -3,13 +3,18 @@ package org.launchcode.cheesemvc.models;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+@Entity
 public class User {
-    private static int nextUserId = 1;
-    private int userId;
+    @Id
+    @GeneratedValue
+    private int id;
     @NotNull
     @NotEmpty(message = "Please provide user name.")
     private String name;
@@ -30,8 +35,6 @@ public class User {
     }
 
     public User() {
-        userId = nextUserId;
-        nextUserId++;
     }
 
     public String getName() {
@@ -59,11 +62,7 @@ public class User {
     }
 
     public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+        return id;
     }
 
     public LocalDateTime getDateJoined() {
