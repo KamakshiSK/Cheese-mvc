@@ -1,11 +1,19 @@
 package org.launchcode.cheesemvc.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Cheese {
+    @Id
+    @GeneratedValue
+    private int id;
+
     @NotNull
     @Size(min = 3, max = 15)
     private String name;
@@ -13,8 +21,7 @@ public class Cheese {
     @NotNull
     @Size(min = 1, message = "Description can not be empty")
     private String description;
-    private static int nextCheeseID = 1;
-    private int cheeseID;
+
     private CheeseType type;
     @Min(1)
     @Max(5)
@@ -27,8 +34,6 @@ public class Cheese {
     }
 
     public Cheese() {
-        cheeseID = nextCheeseID;
-        nextCheeseID++;
     }
 
     public String getName() {
@@ -47,14 +52,6 @@ public class Cheese {
         this.description = description;
     }
 
-    public int getCheeseID() {
-        return cheeseID;
-    }
-
-    public void setCheeseID(int cheeseID) {
-        this.cheeseID = cheeseID;
-    }
-
     public CheeseType getType() {
         return type;
     }
@@ -69,5 +66,9 @@ public class Cheese {
 
     public void setRatings(int ratings) {
         this.ratings = ratings;
+    }
+
+    public int getId() {
+        return id;
     }
 }

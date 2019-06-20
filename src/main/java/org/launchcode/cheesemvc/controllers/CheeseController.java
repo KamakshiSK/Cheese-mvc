@@ -1,8 +1,9 @@
 package org.launchcode.cheesemvc.controllers;
 
 import org.launchcode.cheesemvc.models.Cheese;
-import org.launchcode.cheesemvc.models.CheeseData;
 import org.launchcode.cheesemvc.models.CheeseType;
+import org.launchcode.cheesemvc.models.data.CheeseDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -14,11 +15,14 @@ import javax.validation.Valid;
 @RequestMapping(value="cheese")
 public class CheeseController {
 
+    @Autowired
+    private CheeseDao cheeseDao;
+
     @RequestMapping(value="")
     public String index(Model model){
 
         model.addAttribute("title", "My Cheese ");
-        model.addAttribute("cheeses", CheeseData.getAll());
+        model.addAttribute("cheeses", cheeseDao.findAll());
 
         return "cheese/index";
     }
@@ -42,14 +46,14 @@ public class CheeseController {
             return "cheese/add";
         }
 
-        CheeseData.add(newCheese);
+        cheeseDao.save(newCheese);
         // redirect to /cheese
         return "redirect:";
     }
 
     @RequestMapping(value = "delete", method = RequestMethod.GET)
     public String displayDeleteCheeseForm(Model model) {
-        model.addAttribute("cheeses", CheeseData.getAll());
+        model.addAttribute("cheeses", cheeseDao.findAll());
         model.addAttribute("title", "Delete Cheese");
         return "cheese/delete";
     }
@@ -57,13 +61,13 @@ public class CheeseController {
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public String processDeleteCheeseForm(@RequestParam int[] delCheese) {
         for (int del : delCheese)
-            CheeseData.remove(del);
+            cheeseDao.delete(del);
         return "redirect:";
     }
 
     @RequestMapping(value = "edit/{cheeseId}", method = RequestMethod.GET)
     public String displayEditForm(Model model, @PathVariable int cheeseId) {
-        Cheese c = CheeseData.getById(cheeseId);
+        Cheese c = cheeseDao.findOne(cheeseId);
         model.addAttribute("cheese", c);
         model.addAttribute("cheeseTypes", CheeseType.values());
         return "cheese/edit";
@@ -77,9 +81,10 @@ public class CheeseController {
             return "cheese/edit";
         }
 
-        Cheese c = CheeseData.getById(newCheese.getCheeseID());
-        CheeseData.remove(c.getCheeseID());
-        CheeseData.add(newCheese);
+        // Need to fix this code
+        Cheese c = cheeseDao.findOne(newCheese.getId());
+        cheeseDao.delete(c.getId());
+        cheeseDao.save(newCheese);
         //model.addAttribute("cheese", newCheese);
         /*c.setName(newCheese.getName());
         c.setDescription(newCheese.getDescription());

@@ -25,7 +25,7 @@
             </thead>
             <tr th:each="cheese, iterStat : ${cheeses}">
                 <td th:text="'  ' + ${iterStat.count}"></td>
-                <td><input name="delCheese" th:id="${cheese.cheeseID}" th:value="${cheese.cheeseID}" type="checkbox"/>
+                <td><input name="delCheese" th:id="${cheese.Id}" th:value="${cheese.Id}" type="checkbox"/>
                 </td>
                 <td th:text="${cheese.name}"></td>
                 <td th:text="${cheese.description}"></td>
