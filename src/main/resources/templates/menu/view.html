@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+    <head th:replace="fragments :: head"></head>
+    <body class="container body-content">
+        <h1 th:text="${title} + ${menu.name}">Default Title</h1>
+
+        <nav th:replace="fragments :: navigation"></nav>
+
+        <form method="post" style="max-width:600px;" th:object="${menu}">
+            <ul th:each="cheese : ${menu.cheeseList}">
+                <li th:value="*{cheese.name}"></li>
+                <li th:value="*{cheese.description}"></li>
+                <li th:value="*{cheese.category.name}"></li>
+                <li th:value="*{cheese.ratings}"></li>
+            </ul>
+
+            <p>
+                <a th:href="'/menu/add-item/' + ${menu.id}">Add Cheese</a>
+            </p>
+
+        </form>
+
+    </body>
+</html>
