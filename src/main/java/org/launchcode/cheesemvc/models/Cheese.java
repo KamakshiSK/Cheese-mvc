@@ -1,13 +1,11 @@
 package org.launchcode.cheesemvc.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Cheese {
@@ -29,6 +27,9 @@ public class Cheese {
     @Min(1)
     @Max(5)
     private int ratings;
+
+    @ManyToMany(mappedBy = "cheeseList")
+    private List<Menu> menusList;
 
     public Cheese(String name, String description) {
         this();
