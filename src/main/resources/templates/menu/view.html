@@ -5,6 +5,7 @@
         <h1 th:text="${title} + ${menu.name}">Default Title</h1>
 
         <nav th:replace="fragments :: navigation"></nav>
+        <br/>
 
         <form method="post" style="max-width:600px;" th:object="${menu}">
             <!--            <ul th:each="cheese : ${menu.cheeses}">

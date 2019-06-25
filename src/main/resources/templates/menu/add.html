@@ -5,7 +5,7 @@
         <h1 th:text="${title}">Default Title</h1>
 
         <nav th:replace="fragments :: navigation"></nav>
-
+        <br/>
         <form method="post" style="max-width:600px;" th:object="${menu}">
             <label th:for="name">Menu Name</label>
             <input class="form-control" th:field="*{name}" type="text"/>

@@ -5,7 +5,7 @@
 <h1 th:text="${title}">Default Title</h1>
 
 <nav th:replace="fragments :: navigation"></nav>
-
+<br/>
 <ul>
     <li th:each="category : ${categories}">
         <a th:href="'/cheese/category?id=' + ${category.id}" th:text="${category.name}"></a>
