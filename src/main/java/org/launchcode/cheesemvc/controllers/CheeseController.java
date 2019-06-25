@@ -26,7 +26,7 @@ public class CheeseController {
     @RequestMapping(value="")
     public String index(Model model){
 
-        model.addAttribute("title", "My Cheese ");
+        model.addAttribute("title", "My Cheeses ");
         model.addAttribute("cheeses", cheeseDao.findAll());
 
         return "cheese/index";
@@ -43,8 +43,8 @@ public class CheeseController {
 
     // when add button is clicked this POST method is called and redirected to the same page
     @RequestMapping(value = "add", method=RequestMethod.POST)
-    public String processAddCheeseForm(@ModelAttribute @Valid Cheese newCheese, Errors errors,
-                                       @RequestParam int categoryId, Model model) {
+    public String processAddCheeseForm(Model model, @ModelAttribute @Valid Cheese newCheese, Errors errors,
+                                       @RequestParam int categoryId) {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
@@ -77,7 +77,7 @@ public class CheeseController {
     @RequestMapping(value = "edit/{cheeseId}", method = RequestMethod.GET)
     public String displayEditForm(Model model, @PathVariable int cheeseId) {
         Cheese c = cheeseDao.findOne(cheeseId);
-        model.addAttribute("cheese", c);
+        model.addAttribute("cheeses", c);
         model.addAttribute("categories", categoryDao.findAll());
         return "cheese/edit";
     }

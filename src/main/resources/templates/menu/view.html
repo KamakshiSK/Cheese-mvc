@@ -7,11 +7,14 @@
         <nav th:replace="fragments :: navigation"></nav>
 
         <form method="post" style="max-width:600px;" th:object="${menu}">
-            <ul th:each="cheese : ${menu.cheeseList}">
-                <li th:value="*{cheese.name}"></li>
-                <li th:value="*{cheese.description}"></li>
-                <li th:value="*{cheese.category.name}"></li>
-                <li th:value="*{cheese.ratings}"></li>
+            <!--            <ul th:each="cheese : ${menu.cheeses}">
+                            <li th:value="*{cheese.name}"></li>
+                            <li th:value="*{cheese.description}"></li>
+                            <li th:value="*{cheese.category.name}"></li>
+                            <li th:value="*{cheese.ratings}"></li>
+                        </ul>-->
+            <ul>
+                <li th:each="cheese : ${menu.cheeses}" th:text="${cheese.name}"></li>
             </ul>
 
             <p>

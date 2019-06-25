@@ -18,7 +18,7 @@ public class Menu {
     private String name;
 
     @ManyToMany
-    private List<Cheese> cheeseList;
+    private List<Cheese> cheeses;
 
     public Menu() {
     }
@@ -40,12 +40,12 @@ public class Menu {
         this.name = name;
     }
 
-    public List<Cheese> getCheeseList() {
-        return cheeseList;
+    public List<Cheese> getCheeses() {
+        return cheeses;
     }
 
 
     public void addItem(Cheese item) {
-        this.cheeseList.add(item);
+        this.cheeses.add(item);
     }
 }

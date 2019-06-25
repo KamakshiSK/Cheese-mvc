@@ -6,9 +6,7 @@ import org.launchcode.cheesemvc.models.Menu;
 import javax.validation.constraints.NotNull;
 
 public class AddMenuItemForm {
-    @NotNull
     private Menu menu;
-    @NotNull
     private Iterable<Cheese> cheeses;
     @NotNull
     private int menuId;
@@ -37,5 +35,13 @@ public class AddMenuItemForm {
 
     public int getCheeseId() {
         return cheeseId;
+    }
+
+    public void setMenuId(int menuId) {
+        this.menuId = menuId;
+    }
+
+    public void setCheeseId(int cheeseId) {
+        this.cheeseId = cheeseId;
     }
 }

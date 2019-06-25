@@ -1,7 +1,6 @@
 package org.launchcode.cheesemvc.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ public class Category {
     @GeneratedValue
     private int id;
 
-    @NotNull
     @Size(min = 3, max = 15)
     private String name;
 
@@ -28,7 +26,6 @@ public class Category {
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;

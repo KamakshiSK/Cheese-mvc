@@ -28,7 +28,7 @@ public class Cheese {
     @Max(5)
     private int ratings;
 
-    @ManyToMany(mappedBy = "cheeseList")
+    @ManyToMany(mappedBy = "cheeses")
     private List<Menu> menusList;
 
     public Cheese(String name, String description) {
